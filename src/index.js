@@ -11,7 +11,7 @@ connectDB()
     app.on("error", (error) => {
       console.log("ERROR: ", error);
     });
-    app.listen(process.env.POST, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Mongo DB Connection successfull");
     });
   })
