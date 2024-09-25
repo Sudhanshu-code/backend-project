@@ -55,12 +55,12 @@ userSchema.pre("save", async function (next) {
   //here we are using function because we want the context of the userSchema and may take some time to encrypt to use async await
   if (!this.isModified("password")) return next(); //beacase we don’t want this method to run every whenever there is change in any data like profilePic, name we want it to run whenever there is change in password field
 
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return bcrypt.compare(this.password, password);
+  return await bcrypt.compare(this.password, password);
 };
 
 userSchema.methods.generateAccessToken = function () {
